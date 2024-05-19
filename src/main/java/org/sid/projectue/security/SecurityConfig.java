@@ -29,6 +29,11 @@ public class SecurityConfig {
                                 .requestMatchers("/customersList").hasAnyRole("ADMIN","CASHIER","USER")
                                 .anyRequest().authenticated()
                 )
+                .exceptionHandling(
+                        exceptionHandlingCustomizer -> exceptionHandlingCustomizer
+                                .accessDeniedPage("/accessDenied")
+                )
+                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
         .build();
     }
     @Bean

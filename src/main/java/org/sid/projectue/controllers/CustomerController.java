@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,5 +71,9 @@ public class CustomerController {
     public String updateCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.updateCustomer(customer);
         return "redirect:/customersList"; // Redirige vers la liste des clients après la mise à jour
+    }
+    @GetMapping("/welcome")
+    public String welcomePage() {
+        return "welcome"; // Cela renvoie vers le fichier welcome.html
     }
 }
