@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html">
+<head>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers List</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <main class="container mt-5">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">FIRST NAME</th>
+                <th scope="col">LAST NAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">ADDRESS</th>
+                <th scope="col">STATE</th>
+                <th scope="col">ACTIONS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customers.content}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.address}"></td>
+                <td th:text="${customer.customerState}"></td>
+                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <a class="btn bg-danger"
+                       onclick="return confirm('Are you sure to delete this Customer?')"
+                       th:href="@{deleteCustomer(id=${customer.id})}">
+                        Delete
+                    </a>
+                </td>
+                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <a class="btn bg-success" th:href="@{editCustomer(id=${customer.id})}">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="nav nav-pills">
+            <li th:each="page,status:${pages}">
+                <a th:class="${status.index==currentPage?'btn btn-primary':'btn'}"
+                   th:href="@{customersList(page=${status.index}, size=${size})}"
+                   th:text="${status.index}"
+                ></a>
+            </li>
+
+        </ul>
+    </main>
+</div>
+</body>
+</html>
