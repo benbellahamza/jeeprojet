@@ -9,10 +9,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Edit</title>
+    <style>
+        .btn-custom-bg {
+            width: 120px;
+            background-color: #343a40; /* Couleur de fond gris foncé */
+            color: #fff; /* Couleur du texte en blanc */
+            border-color: #343a40; /* Couleur de la bordure identique à la couleur de fond */
+            margin-top: 14px;
+        }
+
+        .btn-custom-bg:hover {
+            background-color: #23272b; /* Changement de couleur de fond au survol */
+            border-color: #23272b; /* Changement de couleur de bordure au survol */
+        }
+
+        .form-container {
+            width: 800px; /* Largeur du cadre */
+            height:380px;
+            margin: 30px auto 0; /* Centrer le cadre horizontalement */
+            border: 1px solid #ccc; /* Bordure grise autour du cadre */
+            padding: 20px; /* Espacement intérieur du cadre */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-<div layout:fragment="content">
-    <main class="container mt-5">
+<div layout:fragment="content1">
+    <main class="form-container">
         <form th:action="@{updateCustomer}" method="post">
             <div class="form-group">
                 <!-- Utilisation de l'identifiant hidden -->
@@ -23,19 +48,19 @@
                 <input class="form-control" type="text" id="firstName" name="firstName" th:value="${customer.firstName}">
             </div>
             <div class="form-group">
-                <label for="lastName">Last Name : </label>
+                <label class="form-label" for="lastName">Last Name : </label>
                 <input class="form-control" type="text" id="lastName" name="lastName" th:value="${customer.lastName}">
             </div>
             <div class="form-group">
-                <label class="form-label" for="email">Email : </label>
-                <input class="form-control" type="email" id="email" name="email" th:value="${customer.email}">
+                <label class="form-label" for="avis">Avis : </label>
+                <input class="form-control" type="text" id="avis" name="avis" th:value="${customer.avis}">
             </div>
             <div class="form-group">
-                <label class="form-label" for="address">Address : </label>
-                <input class="form-control" type="text" id="address" name="address" th:value="${customer.address}">
+                <label class="form-label" for="note">Note : </label>
+                <input class="form-control" type="text" id="note" name="note" th:value="${customer.note}">
             </div>
             <div>
-                <input class="form-control btn btn-primary" type="submit" value="Update">
+                <input class="form-control btn btn-primary btn-custom-bg" type="submit" value="Update">
             </div>
         </form>
     </main>

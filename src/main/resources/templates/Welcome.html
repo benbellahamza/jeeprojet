@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        /* Ajoutez vos styles personnalisés ici */
+        .jumbotron {
+            height: 92vh; /* Hauteur de 100% de la hauteur de la fenêtre */
+            width: 100%; /* Largeur de 100% */
+
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Pour centrer le contenu verticalement et horizontalement */
+            background: url('https://www.clubjouet.com/images/websiteadmin/WebsiteAdminCategories/categorie-jeux-de-societe-1000X700(2).jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content1">
+    <section class="jumbotron"></section>
+</div>
+</body>
+</html>

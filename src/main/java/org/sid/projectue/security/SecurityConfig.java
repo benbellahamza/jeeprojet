@@ -24,18 +24,23 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(
                         authCustomizer -> authCustomizer
-                                .requestMatchers("/editCustomer","/updateCustomer","/deleteCustomer").hasRole("ADMIN")
+                                .requestMatchers("/createCustomer","/updateCustomer","/deleteCustomer").hasRole("ADMIN")
                                 .requestMatchers("/createCustomer","/saveCustomer").hasAnyRole("ADMIN","CASHIER")
-                                .requestMatchers("/customersList").hasAnyRole("ADMIN","CASHIER","USER")
+                                .requestMatchers("/createCustomer","/editCustomer","/customersList").hasAnyRole("ADMIN","CASHIER","USER")
                                 .anyRequest().authenticated()
                 )
-        .build();
+                .exceptionHandling(
+                        exceptionHandlingCustomizer -> exceptionHandlingCustomizer
+                                .accessDeniedPage("/accessDenied")
+                )
+                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
+                .build();
     }
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(){
         return new InMemoryUserDetailsManager(
                 User.withUsername("admin").password(bCryptPasswordEncoder().encode("123")).roles("ADMIN", "USER").build(),
-                User.withUsername("cashier").password(bCryptPasswordEncoder().encode("123")).roles("CASHIER").build(),
+                User.withUsername("user").password(bCryptPasswordEncoder().encode("123")).roles("CASHIER").build(),
                 User.withUsername("accountant").password(bCryptPasswordEncoder().encode("123")).roles("USER").build()
         );
     }

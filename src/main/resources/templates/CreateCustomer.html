@@ -8,32 +8,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Creation</title>
+    <style>
+        .btn-custom-bg {
+            width: 120px;
+            background-color: #343a40; /* Couleur de fond gris foncé */
+            color: #fff; /* Couleur du texte en blanc */
+            border-color: #343a40; /* Couleur de la bordure identique à la couleur de fond */
+            margin-top: 14px;
+        }
+
+        .btn-custom-bg:hover {
+            background-color: #23272b; /* Changement de couleur de fond au survol */
+            border-color: #23272b; /* Changement de couleur de bordure au survol */
+        }
+
+        .form-container {
+            width: 800px; /* Largeur du cadre */
+            height:380px;
+            margin: 0 auto; /* Centrer le cadre horizontalement */
+            border: 1px solid #ccc; /* Bordure grise autour du cadre */
+            padding: 20px; /* Espacement intérieur du cadre */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content1">
     <main class="container mt-5">
-        <form th:action="@{/saveCustomer}" th:object="${customer}" method="post">
-            <div class="form-group">
-                <label class="form-label" for="firstName">First Name : </label>
-                <input class="form-control" type="text" id="firstName" th:field="*{firstName}">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="lastName">Last Name : </label>
-                <input class="form-control" type="text" id="lastName" th:field="*{lastName}">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="email">Email : </label>
-                <input class="form-control" type="email" id="email" th:field="*{email}">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="address">Address : </label>
-                <input class="form-control" type="text" id="address" th:field="*{address}">
-            </div>
-            <div class="form-group">
-                <input class="form-control btn btn-primary" type="submit" value="Save">
-            </div>
-        </form>
+        <div class="form-container">
+            <form th:action="@{/saveCustomer}" th:object="${customer}" method="post">
+                <div class="form-group">
+                    <label class="form-label" for="firstName">Prénom : </label>
+                    <input class="form-control" type="text" id="firstName" th:field="*{firstName}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="lastName">Nom : </label>
+                    <input class="form-control" type="text" id="lastName" th:field="*{lastName}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="avis">Avis : </label>
+                    <input class="form-control" type="text" id="avis" th:field="*{avis}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="note">Note : </label>
+                    <input class="form-control" type="text" id="note" th:field="*{note}">
+                </div>
+                <div class="form-group text-center"> <!-- Centrer le bouton -->
+                    <input class="form-control btn btn-primary btn-custom-bg" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
     </main>
 </div>
 </body>

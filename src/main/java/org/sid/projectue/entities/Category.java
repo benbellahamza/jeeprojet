@@ -20,6 +20,6 @@ public class Category {
     private Long id;
     private String category;
     private String parentId;
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<Product> products = new ArrayList<>();
+    /*@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Producte> products = new ArrayList<>();*/
 }

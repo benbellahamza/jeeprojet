@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
     <meta charset="UTF-8">
     <title>Customer Management</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css">
     <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .btnn{
+            position: relative;
+            left: 1172px;
+        }
+
+    </style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" th:href="@{customersList}">Home</a>
+            <a class="nav-link" th:href="@{/welcome}">Home</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Customers</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Avis</a>
             <ul class="dropdown-menu">
-                <li th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''CASHIER'')')}"><a class="dropdown-item" th:href="@{createCustomer}">New</a></li>
-                <li><a class="dropdown-item" th:href="@{customersList}">List</a></li>
+                <li th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''CASHIER'')')}"><a class="dropdown-item" th:href="@{/createCustomer}">New</a></li>
+                <li><a class="dropdown-item" th:href="@{/customersList}">List</a></li>
             </ul>
         </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="/product/Allproduct" role="button">Product</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="/product/Addproduct" role="button">Add_Product</a>
+        </li>
     </ul>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
                href="#"
                role="button"
                data-bs-toggle="dropdown"
-               th:text="${#authentication.name}"
-            >
+               th:text="${#authentication.name}">
                 [username]
             </a>
             <ul class="dropdown-menu">
-                <a class="dropdown-item" href="#">login</a>
-                <form method="post" th:href="@{/logout}">
-                    <button class="dropdown-item" type="submit">logout</button>
+                <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#">login</a>
+                <form method="post" th:action="@{/logout}">
+                    <button sec:authorize="isAuthenticated()" class="dropdown-item" type="submit">logout</button>
                 </form>
-
             </ul>
         </li>
     </ul>
 </nav>
-<main class="container mt-5">
-    <div layout:fragment="content">
 
-    </div>
-</main>
-<footer class="text-center fixed-bottom text-lg-start bg-light text-muted">
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2024 Copyright:
-        <a class="text-reset fw-bold" href="http://6solutions.com/">6solutions.com</a>
+<section layout:fragment="content1">
+</section>
+
+<footer class="bg-dark text-white pt-4 mt-5">
+    <div class="container text-center text-md-left">
+        <div class="row">
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">À propos de nous</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                <p>
+                    Nous sommes passionnés par les jeux de société et nous aimons partager notre passion avec vous. Découvrez des critiques, des conseils, et des recommandations pour tous les types de jeux de société.
+                </p>
+            </div>
+
+            <div class="col-md-2 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Liens utiles</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="/product/Allproduct" class="text-white">Jeux populaires</a></li>
+                    <li class="mb-2"><a href="/welcome" class="text-white">Accueil</a></li>
+                    <li class="mb-2"><a href="/customersList" class="text-white">Avis</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-house-door mr-3"></i> Casablanca, Maroc</li>
+                    <li class="mb-2"><i class="bi bi-envelope mr-3"></i> Mizo@gmail.com</li>
+                    <li class="mb-2"><i class="bi bi-phone mr-3"></i> +212691141975</li>
+                </ul>
+            </div>
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Suivez-nous</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                <ul class="list-unstyled list-inline">
+                    <li class="list-inline-item"><a href="https://www.facebook.com/mizo.ben.7543?mibextid=LQQJ4d" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="https://www.instagram.com/_mizo49_/" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/hamza-ben-bella?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </footer>
 </body>
