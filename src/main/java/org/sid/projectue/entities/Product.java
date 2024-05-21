@@ -20,6 +20,7 @@ public class Product {
     private String imageUrl;
     private String description;
     private Date datePublication;
+    private float prix;
 
 
 

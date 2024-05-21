@@ -38,7 +38,7 @@ public class AvisController {
     @RequestMapping("/customersList")
     public String customersList(ModelMap modelMap,
                                 @RequestParam(name = "page", defaultValue = "0") int page,
-                                @RequestParam(name = "size", defaultValue = "3") int size) {
+                                @RequestParam(name = "size", defaultValue = "6") int size) {
         Page<Customer> customers = customerService.getAllCustomersByPage(page, size);
         modelMap.addAttribute("customers", customers);
         modelMap.addAttribute("currentPage", page);
