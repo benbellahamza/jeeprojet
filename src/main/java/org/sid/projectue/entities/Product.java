@@ -20,8 +20,13 @@ public class Product {
     private String imageUrl;
     private String description;
     private Date datePublication;
+<<<<<<< HEAD
     private float prix;
 
+=======
+    @ManyToOne
+    private Customer customer;
+>>>>>>> 2e6dfdcff4c39999ebe6d5bb7d3fe55650525531
 
 
     @Override
@@ -33,6 +38,10 @@ public class Product {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", description='" + description + '\'' +
                 ", datePublication=" + datePublication +
+<<<<<<< HEAD
+=======
+                ", Customer=" +customer.toString() +
+>>>>>>> 2e6dfdcff4c39999ebe6d5bb7d3fe55650525531
                 '}';
     }
 }

@@ -19,7 +19,11 @@ public class ProductController {
     @GetMapping("/Allproduct")
     public String allProducts(Model model,
                               @RequestParam(name = "Search", defaultValue = "") String kw,
+<<<<<<< HEAD
                               @RequestParam(name = "size", defaultValue = "6") int size,
+=======
+                              @RequestParam(name = "size", defaultValue = "5") int size,
+>>>>>>> 2e6dfdcff4c39999ebe6d5bb7d3fe55650525531
                               @RequestParam(name = "page", defaultValue = "0") int page) {
         Page<Product> pageProduct = productService.findProductByName(kw, page, size);
         model.addAttribute("products", pageProduct.getContent());
@@ -58,6 +62,7 @@ public class ProductController {
     public String addProductPost(Model model,
                                  @RequestParam(name = "name") String name,
                                  @RequestParam(name = "description") String desc,
+<<<<<<< HEAD
                                  @RequestParam(name = "imageurl") String imgUrl
                                     ,@RequestParam (name ="prix")float prix)
     {
@@ -66,6 +71,15 @@ public class ProductController {
         product.setDescription(desc);
         product.setImageUrl(imgUrl);
         product.setPrix(prix);
+=======
+                                 @RequestParam(name = "imageurl") String imgUrl,
+                                 @RequestParam(name = "url") String url) {
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(desc);
+        product.setUrl(url);
+        product.setImageUrl(imgUrl);
+>>>>>>> 2e6dfdcff4c39999ebe6d5bb7d3fe55650525531
         product.setDatePublication(new Date());
         productService.addProduct(product);
         return "redirect:/product/Allproduct";

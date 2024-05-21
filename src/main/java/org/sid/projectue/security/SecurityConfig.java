@@ -34,7 +34,11 @@ public class SecurityConfig {
                                 .accessDeniedPage("/accessDenied")
                 )
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
+<<<<<<< HEAD
                 .build();
+=======
+        .build();
+>>>>>>> 2e6dfdcff4c39999ebe6d5bb7d3fe55650525531
     }
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(){
